@@ -1,0 +1,25 @@
+# https://github.com/github/gitignore/blob/main/Haskell.gitignore
+
+# OS
+Thumbs.db
+.DS_Store
+
+# data
+*.txt
+
+# binaries
+# !directory/*.type
+dist-newstyle
+bin/
+*.hi
+*.o
+
+# tmp
+backup/
+*~
+
+# Emacs
+\#*
+.#*
+*.hs#
+*.hs~
