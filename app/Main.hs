@@ -69,12 +69,14 @@ doubleEveryOther xs =
 -- Example: sumDigits [16,7,12,5] = 1 + 6 + 7 + 12 + 5
 
 sumDigits :: [Integer] -> Integer
-sumDigits [x] = x
-sumDigits (x:xs) = calculate x + sumDigits xs
+sumDigits xs
+  | null xs        = 0
+  | length xs == 1 = calculate (head xs)
+  | otherwise      = calculate (head xs) + sumDigits (tail xs)
   where calculate x
-          | length (show x) == 1 = x
-          | length (show x) >  1 = let (truncated, remainder) = x `divMod` 10
-                                    in remainder + calculate truncated 
+          | x `div` 10 == 0 = x
+          | otherwise  = let (truncated, remainder) = x `divMod` 10
+                          in remainder + calculate truncated 
 
 -- Exercse 4
 -- -------------------------------------------------------------------
