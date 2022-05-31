@@ -1,0 +1,7 @@
+cradle:
+  cabal:
+    - path: "app/Main.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "app/CardValidation.hs"
+      component: "haskell-functions:exe:haskell-functions"
