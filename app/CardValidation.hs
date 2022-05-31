@@ -70,7 +70,7 @@ doubleEveryOther xs =
 --     sumDigits :: [Integer] -> Integer 
 --
 -- to calculate the sum of all digits.
--- Example: sumDigits [16,7,12,5] = 1 + 6 + 7 + 12 + 5
+-- Example: sumDigits [16,7,12,5] = 1 + 6 + 7 + 1 + 2 + 5
 
 sumDigits :: [Integer] -> Integer
 sumDigits xs
