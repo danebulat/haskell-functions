@@ -15,6 +15,10 @@ import Data.Char
 -- of 3 from 'z', you end up back at 'c'.
 -- ===================================================================
 
+-- -------------------------------------------------------------------
+-- Utility Functions
+-- -------------------------------------------------------------------
+
 -- Return True if character not uppercase
 -- or lowercase letter
 isNotAlpha :: Char -> Bool
@@ -22,35 +26,45 @@ isNotAlpha x = not $ x `elem` ['A'..'Z'] || x `elem` ['a'..'z']
 
 -- Get upper and lower bound integer representations
 -- of lowercase and uppercase alphabet characters
-getUpperLower :: Char -> (Int, Int)
-getUpperLower x
+getBounds :: Char -> (Int, Int)
+getBounds x
   | isLower x = (122, 97)  -- Lowercase: 97 - 122
   | isUpper x = (90, 65)   -- Uppercase: 65 - 90
   | otherwise = (0, 0)
 
+-- -------------------------------------------------------------------
+-- Encode / Decode Functions
+-- -------------------------------------------------------------------
+
 -- Caesar function that shifts characters to
 -- the right.
 caesar :: Int -> [Char] -> [Char]
-caesar n xs = map (\x -> (shiftRight n x (getUpperLower x))) xs
+caesar n xs = map (\x -> let b = getBounds x in shiftRight n x b) xs
   where
     shiftRight :: Int -> Char -> (Int, Int) -> Char
-    shiftRight n c (upper, lower)
+    shiftRight n c (ub, lb)
       | isNotAlpha c   = c
       | n == 0         = c
-      | ord c == upper = shiftRight (n-1) (chr lower) (upper, lower)
-      | otherwise      = shiftRight (n-1) (succ c) (upper, lower)
+      | ord c == ub    = shiftRight (n-1) (chr lb) (ub, lb)
+      | otherwise      = shiftRight (n-1) (succ c) (ub, lb)
+                  -- (up, lb) == (upper bound, lower bound)
 
 -- Caesar function that shifts characters to
 -- the left.
 unCaesar :: Int -> [Char] -> [Char]
-unCaesar n xs = map (\x -> (shiftLeft n x (getUpperLower x))) xs
+unCaesar n xs = map (\x -> let b = getBounds x in shiftLeft n x b) xs
   where
     shiftLeft :: Int -> Char -> (Int, Int) -> Char
-    shiftLeft n c (upper, lower)
-          | isNotAlpha c   = c
-          | n == 0         = c
-          | ord c == lower = shiftLeft (n-1) (chr upper) (upper, lower)
-          | otherwise      = shiftLeft (n-1) (pred c) (upper, lower)
+    shiftLeft n c (ub, lb)
+          | isNotAlpha c = c
+          | n == 0       = c
+          | ord c == lb  = shiftLeft (n-1) (chr ub) (ub, lb)
+          | otherwise    = shiftLeft (n-1) (pred c) (ub, lb)
+                   -- (up, lb) == (upper bound, lower bound)
+
+-- -------------------------------------------------------------------
+-- Simpler Character Encode / Decode Functions
+-- -------------------------------------------------------------------
 
 -- Simple implementation of shiftRight
 -- Takes into account lowercase and space
