@@ -5,3 +5,9 @@ cradle:
 
     - path: "app/CardValidation.hs"
       component: "haskell-functions:exe:haskell-functions"
+
+    - path: "app/Cipher.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "app/WordNumber.hs"
+      component: "haskell-functions:exe:haskell-functions"
