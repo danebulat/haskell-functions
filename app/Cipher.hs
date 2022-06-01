@@ -1,4 +1,10 @@
-module Cipher where
+module Cipher
+( caesar
+, unCaesar
+, caesarTests
+, unCaesarTests
+, caesarEncodeDecodeTests
+) where
 
 import Data.Char
 
@@ -43,11 +49,11 @@ caesar n xs = map (\x -> let b = getBounds x in shiftRight n x b) xs
   where
     shiftRight :: Int -> Char -> (Int, Int) -> Char
     shiftRight n c (ub, lb)
-      | isNotAlpha c   = c
-      | n == 0         = c
-      | ord c == ub    = shiftRight (n-1) (chr lb) (ub, lb)
-      | otherwise      = shiftRight (n-1) (succ c) (ub, lb)
-                  -- (up, lb) == (upper bound, lower bound)
+      | isNotAlpha c = c
+      | n == 0       = c
+      | ord c == ub  = shiftRight (n-1) (chr lb) (ub, lb)
+      | otherwise    = shiftRight (n-1) (succ c) (ub, lb)
+                -- (up, lb) == (upper bound, lower bound)
 
 -- Caesar function that shifts characters to
 -- the left.
