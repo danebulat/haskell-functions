@@ -9,5 +9,8 @@ cradle:
     - path: "app/Cipher.hs"
       component: "haskell-functions:exe:haskell-functions"
 
+    - path: "app/DbProcessing.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
     - path: "app/WordNumber.hs"
       component: "haskell-functions:exe:haskell-functions"

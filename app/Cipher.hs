@@ -53,7 +53,7 @@ caesar n xs = map (\x -> let b = getBounds x in shiftRight n x b) xs
       | n == 0       = c
       | ord c == ub  = shiftRight (n-1) (chr lb) (ub, lb)
       | otherwise    = shiftRight (n-1) (succ c) (ub, lb)
-                -- (up, lb) == (upper bound, lower bound)
+                -- (ub, lb) == (upper bound, lower bound)
 
 -- Caesar function that shifts characters to
 -- the left.
@@ -62,11 +62,11 @@ unCaesar n xs = map (\x -> let b = getBounds x in shiftLeft n x b) xs
   where
     shiftLeft :: Int -> Char -> (Int, Int) -> Char
     shiftLeft n c (ub, lb)
-          | isNotAlpha c = c
-          | n == 0       = c
-          | ord c == lb  = shiftLeft (n-1) (chr ub) (ub, lb)
-          | otherwise    = shiftLeft (n-1) (pred c) (ub, lb)
-                   -- (up, lb) == (upper bound, lower bound)
+      | isNotAlpha c = c
+      | n == 0       = c
+      | ord c == lb  = shiftLeft (n-1) (chr ub) (ub, lb)
+      | otherwise    = shiftLeft (n-1) (pred c) (ub, lb)
+                -- (ub, lb) == (upper bound, lower bound)
 
 -- -------------------------------------------------------------------
 -- Simpler Character Encode / Decode Functions
