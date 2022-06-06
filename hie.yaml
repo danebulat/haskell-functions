@@ -14,3 +14,6 @@ cradle:
 
     - path: "app/WordNumber.hs"
       component: "haskell-functions:exe:haskell-functions"
+
+    - path: "app/VigenereCipher.hs"
+      component: "haskell-functions:exe:haskell-functions"
