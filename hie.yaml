@@ -3,13 +3,16 @@ cradle:
     - path: "app/Main.hs"
       component: "haskell-functions:exe:haskell-functions"
 
+    - path: "app/BinaryTree.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
     - path: "app/CardValidation.hs"
       component: "haskell-functions:exe:haskell-functions"
 
     - path: "app/Cipher.hs"
       component: "haskell-functions:exe:haskell-functions"
 
-    - path: "app/DbProcessing.hs"
+    - path: "app/Database.hs"
       component: "haskell-functions:exe:haskell-functions"
 
     - path: "app/WordNumber.hs"

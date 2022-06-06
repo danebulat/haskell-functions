@@ -1,4 +1,4 @@
-module DbProcessing where 
+module Database where 
 
 import Data.Time
 
