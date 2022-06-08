@@ -18,6 +18,21 @@ data BinaryTree a =
   | Node (BinaryTree a) a (BinaryTree a)
   deriving (Eq, Ord, Show)
 
+-- unfold
+-- -------------------------------------------------------------------
+
+unfold :: (a -> Maybe (a, b, a)) -> a -> BinaryTree b
+unfold f x = case f x of
+  Nothing -> Leaf
+  Just (x, y, z) -> Node (unfold f x) y (unfold f z)
+
+-- tree builder
+-- -------------------------------------------------------------------
+-- A tree builder using the unfold function above.
+
+treeBuild :: Integer -> BinaryTree Integer
+treeBuild x = unfold (\b -> if b == x then Nothing else Just (b+1, b, b+1)) 0
+
 -- Inserting into trees
 -- --------------------
 -- Left lesser, right greater is a common convention for arranging

@@ -4,6 +4,8 @@ import qualified CardValidation as CV
 import qualified WordNumber as WN
 import Cipher 
 
+import Data.Char (toUpper)
+
 runCipherDemo :: IO ()
 runCipherDemo = do
   putStrLn "Enter a sentence to pass to the caesar cipher:"
