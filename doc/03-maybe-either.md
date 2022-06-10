@@ -63,7 +63,7 @@ nameOkay name
   | name /= "" = Right name 
   | otherwise = Left [NameEmpty]
   
--- Function to construct a Person that returns and Either value
+-- Function to construct a Person that returns an Either value
 mkPerson :: Name -> Age -> ValidatePerson Person 
 mkPerson name age = 
   mkPerson' (nameOkay name) (ageOkay age)
