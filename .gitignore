@@ -4,15 +4,9 @@
 Thumbs.db
 .DS_Store
 
-# data
-*.txt
-
 # binaries
 # !directory/*.type
-dist-newstyle
 bin/
-*.hi
-*.o
 
 # tmp
 backup/
@@ -24,5 +18,27 @@ backup/
 *.hs#
 *.hs~
 
-# Misc
-TODO.md
+# Haskell 
+dist
+dist-*
+cabal-dev
+*.o
+*.hi
+*.hie
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+cabal.project.local
+cabal.project.local~
+.HTF/
+.ghc.environment.*
