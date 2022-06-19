@@ -30,8 +30,10 @@ resolver:
 #   - auto-update
 #   - wai
 packages:
+- hangman
 - haskell-functions
-- hangman 
+- morse
+
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:
@@ -51,7 +53,7 @@ packages:
 
 # Control whether we use the GHC we find on the path
 system-ghc: true
-#
+
 # Require a specific version of stack, using version ranges
 # require-stack-version: -any # Default
 # require-stack-version: ">=2.7"

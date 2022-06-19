@@ -1,0 +1,73 @@
+cradle:
+  stack:
+    - path: "hangman/app/Main.hs"
+      component: "hangman:exe:hangman"
+
+    - path: "hangman/src/Main.hs"
+      component: "hangman:exe:hangman"
+
+    - path: "hangman/app/Ch13Exercises.hs"
+      component: "hangman:exe:hangman"
+
+    - path: "hangman/app/HangMan.hs"
+      component: "hangman:exe:hangman"
+
+    - path: "hangman/src/Ch13Exercises.hs"
+      component: "hangman:exe:hangman"
+
+    - path: "hangman/src/HangMan.hs"
+      component: "hangman:exe:hangman"
+
+    - path: "hangman/src"
+      component: "hangman:lib"
+
+    - path: "hangman/src"
+      component: "hangman:lib"
+
+    - path: "hangman/test"
+      component: "hangman:test:hangman-test"
+
+    - path: "hangman/src"
+      component: "hangman:test:hangman-test"
+
+    - path: "haskell-functions/app/Main.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "haskell-functions/app/BinaryTree.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "haskell-functions/app/CardValidation.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "haskell-functions/app/Cipher.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "haskell-functions/app/Database.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "haskell-functions/app/WordNumber.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "haskell-functions/app/VigenereCipher.hs"
+      component: "haskell-functions:exe:haskell-functions"
+
+    - path: "morse/src"
+      component: "morse:lib"
+
+    - path: "morse/app/Main.hs"
+      component: "morse:exe:morse"
+
+    - path: "morse/src/Main.hs"
+      component: "morse:exe:morse"
+
+    - path: "morse/app/Morse.hs"
+      component: "morse:exe:morse"
+
+    - path: "morse/src/Morse.hs"
+      component: "morse:exe:morse"
+
+    - path: "morse/test"
+      component: "morse:test:morse-test"
+
+    - path: "morse/src"
+      component: "morse:test:morse-test"
