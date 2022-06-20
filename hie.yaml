@@ -1,5 +1,20 @@
 cradle:
   stack:
+    - path: "card-validation/app/Main.hs"
+      component: "card-validation:exe:card-validation"
+
+    - path: "card-validation/src/Main.hs"
+      component: "card-validation:exe:card-validation"
+
+    - path: "card-validation/app/CardValidation.hs"
+      component: "card-validation:exe:card-validation"
+
+    - path: "card-validation/src/CardValidation.hs"
+      component: "card-validation:exe:card-validation"
+
+    - path: "card-validation/src"
+      component: "card-validation:lib"
+
     - path: "hangman/app/Main.hs"
       component: "hangman:exe:hangman"
 
@@ -34,9 +49,6 @@ cradle:
       component: "haskell-functions:exe:haskell-functions"
 
     - path: "haskell-functions/app/BinaryTree.hs"
-      component: "haskell-functions:exe:haskell-functions"
-
-    - path: "haskell-functions/app/CardValidation.hs"
       component: "haskell-functions:exe:haskell-functions"
 
     - path: "haskell-functions/app/Cipher.hs"

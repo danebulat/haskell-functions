@@ -30,6 +30,7 @@ resolver:
 #   - auto-update
 #   - wai
 packages:
+- card-validation
 - hangman
 - haskell-functions
 - morse

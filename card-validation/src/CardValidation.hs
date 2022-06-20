@@ -19,13 +19,13 @@ module CardValidation
 --
 -- toDigits should convert positive Integers to a list of digits.
 -- (For 0 or negative inputs, toDigits should return the empty
--- list.)
+-- list)
 -- toDigitsRev should do the same, but with the digits reversed.
 
--- Example: toDigits 1234 == [1,2,3,4]
--- Example: toDigitsRev 1234 == [4,3,2,1]
--- Example: toDigits 0 == []
--- Example: toDigits (-17) == []
+-- Example: toDigits    1234  == [1,2,3,4]
+-- Example: toDigitsRev 1234  == [4,3,2,1]
+-- Example: toDigits    0     == []
+-- Example: toDigits    (-17) == []
 
 toDigits :: Integer -> [Integer]
 toDigits x
@@ -75,12 +75,12 @@ doubleEveryOther xs =
 sumDigits :: [Integer] -> Integer
 sumDigits xs
   | null xs        = 0
-  | length xs == 1 = calculate (head xs)
-  | otherwise      = calculate (head xs) + sumDigits (tail xs)
-  where calculate x
+  | length xs == 1 = go (head xs)
+  | otherwise      = go (head xs) + sumDigits (tail xs)
+  where go x
           | x `div` 10 == 0 = x
           | otherwise  = let (truncated, remainder) = x `divMod` 10
-                          in remainder + calculate truncated 
+                          in remainder + go truncated 
 
 -- Exercse 4
 -- -------------------------------------------------------------------
@@ -100,11 +100,10 @@ sumDigits xs
 validate :: Integer -> Bool
 validate x = case (sumDigits . doubleEveryOther . toDigits $ x) `rem` 10 of
               0 -> True
-              _ -> False 
+              _ -> False
 
 -- Test
 test :: [Bool]
 test = let pass = validate 4012888888881881 -- True 
            fail = validate 4012888888881882 -- False 
         in [pass, fail]
-
