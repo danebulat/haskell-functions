@@ -31,7 +31,7 @@ resolver:
 #   - wai
 packages:
 - card-validation
-- functor-code
+- functors
 - hangman
 - haskell-functions
 - morse

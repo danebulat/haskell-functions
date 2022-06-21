@@ -1,5 +1,5 @@
 cabal-version:      2.4
-name:               functor-code
+name:               functors
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
@@ -19,7 +19,7 @@ maintainer:         dane.bulat@gmail.com
 -- category:
 extra-source-files: CHANGELOG.md
 
-executable functor-code
+executable functors
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
@@ -35,6 +35,7 @@ executable functor-code
 library
     exposed-modules:  Exercises
                     , FlipFunctor
+                    , FunctionFunctor
                     , NaturalTransformation
                     , ReplaceExperiment
     ghc-options:
@@ -44,7 +45,7 @@ library
                     , QuickCheck
     default-language: Haskell2010 
 
-test-suite functor-test
+test-suite functors-test
     type:             exitcode-stdio-1.0
     main-is:          tests.hs
     other-modules:

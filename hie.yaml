@@ -15,6 +15,21 @@ cradle:
     - path: "card-validation/src"
       component: "card-validation:lib"
 
+    - path: "card-validation/test"
+      component: "card-validation:test:card-validation-test"
+
+    - path: "card-validation/src"
+      component: "card-validation:test:card-validation-test"
+
+    - path: "functors/app/Main.hs"
+      component: "functor-code:exe:functor-code"
+
+    - path: "functors/src"
+      component: "functor-code:lib"
+
+    - path: "functors/test"
+      component: "functor-code:test:functor-test"
+
     - path: "hangman/app/Main.hs"
       component: "hangman:exe:hangman"
 
@@ -32,9 +47,6 @@ cradle:
 
     - path: "hangman/src/HangMan.hs"
       component: "hangman:exe:hangman"
-
-    - path: "hangman/src"
-      component: "hangman:lib"
 
     - path: "hangman/src"
       component: "hangman:lib"

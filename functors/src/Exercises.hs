@@ -103,7 +103,6 @@ data EvilGoateeConst b a =
 instance Functor (EvilGoateeConst b) where
   fmap _ (GoatyConst a) = GoatyConst a
 
-
 -- 5.
 -- Do you need something extra to make the instance work?
 data LiftItOut f a =
@@ -167,7 +166,8 @@ data TalkToMe a =
   Halt | Print String a | Read (String -> a)
 
 -- https://eli.thegreenplace.net/2018/haskell-functions-as-functors-applicatives-and-monads/
--- instance Functor TalkToMe where
---   fmap _ Halt = Halt
---   fmap (Print s a) = Print s (f a)
+instance Functor TalkToMe where
+  fmap _ Halt = Halt
+  fmap f (Print s a) = Print s (f a)
+  fmap g (Read f) = Read (\x -> (g (f x)))
 
