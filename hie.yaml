@@ -1,5 +1,29 @@
 cradle:
   stack:
+    - path: "applicatives/app/Main.hs"
+      component: "applicatives:exe:applicatives"
+
+    - path: "applicatives/src"
+      component: "applicatives:lib"
+
+    - path: "applicatives/test"
+      component: "applicatives:test:applicative-tests"
+
+    - path: "applicatives/src"
+      component: "applicatives:test:applicative-tests"
+
+    - path: "binary-tree/app/Main.hs"
+      component: "binary-tree:exe:binary-tree"
+
+    - path: "binary-tree/src"
+      component: "binary-tree:lib"
+
+    - path: "binary-tree/test"
+      component: "binary-tree:test:binary-tree-test"
+
+    - path: "binary-tree/src"
+      component: "binary-tree:test:binary-tree-test"
+
     - path: "card-validation/app/Main.hs"
       component: "card-validation:exe:card-validation"
 
@@ -22,13 +46,13 @@ cradle:
       component: "card-validation:test:card-validation-test"
 
     - path: "functors/app/Main.hs"
-      component: "functor-code:exe:functor-code"
+      component: "functors:exe:functors"
 
     - path: "functors/src"
-      component: "functor-code:lib"
+      component: "functors:lib"
 
     - path: "functors/test"
-      component: "functor-code:test:functor-test"
+      component: "functors:test:functors-test"
 
     - path: "hangman/app/Main.hs"
       component: "hangman:exe:hangman"

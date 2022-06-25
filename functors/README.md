@@ -13,7 +13,7 @@
 
 - [`FunctorFunctor.hs`](./src/FunctionFunctor.hs)
   
-  Implementation of ((->) a) Functor istance. How `fmap` works 
+  Implementation of `((->) a)` Functor istance. How `fmap` works 
   when applied to functions (just function composition).
 
 - [`NaturalTransformation.hs`](./src/NaturalTransformation.hs)

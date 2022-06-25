@@ -30,6 +30,8 @@ resolver:
 #   - auto-update
 #   - wai
 packages:
+- applicatives 
+- binary-tree
 - card-validation
 - functors
 - hangman
