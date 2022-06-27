@@ -35,7 +35,15 @@ instance Applicative List where
   pure a = Cons a Nil 
   _ <*> Nil = Nil 
   Nil <*> _ = Nil
-  (Cons f fs) <*> xs = fmap f xs `append'` (fs <*> xs)
+  (Cons f fs) <*> xs =
+    fmap f xs `append'` (fs <*> xs)
+
+-- Monad instance
+instance Monad List where
+  return = pure
+  Nil >>= _ = Nil
+  (Cons x xs) >>= k =
+    k x `append'` (xs >>= k) -- k :: a -> List a
 
 -- QuickCheck Instances
 instance Arbitrary a => Arbitrary (List a) where
@@ -163,7 +171,6 @@ flatMapTest =
 -- Another way to manipulate a (List a) structure.
 -- Provide a custom function for manipuling the Cons values.
 --
-
 foldList :: (a -> b -> b) -> b -> List a -> b
 foldList _ acc Nil = acc
 foldList f acc (Cons x xs) = f x (foldList f acc xs)
@@ -176,7 +183,6 @@ testFoldList =
 -- ===================================================================
 -- Experimental (learning) functions 
 -- ===================================================================
-
 
 -- Builds a (List a) structure where the
 -- lowest integer is the head of the list.
@@ -225,4 +231,5 @@ getListElement targetIn list =
             let (Cons x xs) = l in x
           | otherwise = let (Cons x xs) = l
                          in go targetIn xs (1+curIn)
+
 
