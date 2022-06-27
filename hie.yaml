@@ -99,6 +99,18 @@ cradle:
     - path: "haskell-functions/app/VigenereCipher.hs"
       component: "haskell-functions:exe:haskell-functions"
 
+    - path: "monads/app/Main.hs"
+      component: "monads:exe:monads"
+
+    - path: "monads/src"
+      component: "monads:lib"
+
+    - path: "monads/test"
+      component: "monads:test:monad-tests"
+
+    - path: "monads/src"
+      component: "monads:test:monad-tests"
+
     - path: "morse/src"
       component: "morse:lib"
 
