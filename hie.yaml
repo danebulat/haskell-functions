@@ -131,3 +131,9 @@ cradle:
 
     - path: "morse/src"
       component: "morse:test:morse-test"
+
+    - path: "reader/app/Main.hs"
+      component: "reader:exe:reader"
+
+    - path: "reader/src"
+      component: "reader:lib"

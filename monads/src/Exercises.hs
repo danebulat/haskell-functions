@@ -161,6 +161,7 @@ instance Arbitrary a => Arbitrary (List a) where
 instance Eq a => EqProp (List a) where
   (=-=) = eq
 
+runListTest :: IO ()
 runListTests = do
   quickBatch $ functor trigger
   quickBatch $ applicative trigger
