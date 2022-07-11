@@ -99,6 +99,18 @@ cradle:
     - path: "haskell-functions/app/VigenereCipher.hs"
       component: "haskell-functions:exe:haskell-functions"
 
+    - path: "json/app/Main.hs"
+      component: "json:exe:json"
+
+    - path: "json/app/Example1.hs"
+      component: "json:exe:json"
+
+    - path: "json/app/Example2.hs"
+      component: "json:exe:json"
+
+    - path: "json/src"
+      component: "json:lib"
+
     - path: "monads/app/Main.hs"
       component: "monads:exe:monads"
 
