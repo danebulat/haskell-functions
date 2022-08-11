@@ -1,43 +1,6 @@
 module Main where
 
--- --------------------------------------------------------------------------------
--- State Monad
-
-newtype State s a =
-  State { runState :: s -> (a, s) }
-
-instance Functor (State s) where
-  fmap f x = State $ \s ->
-    let (a, s') = (runState x) s
-    in  (f a, s')
-
-instance Applicative (State s) where
-  pure x = State $ \s -> (x, s)
-  x <*> y = State $ \s ->
-    let (f, s')  = (runState x) s
-        (a, s'') = (runState y) s'
-    in (f a, s'')
-
-instance Monad (State s) where
-  return = pure
-  x >>= k = State $ \s ->
-    let (a, s') = (runState x) s
-    in runState (k a) s'
-
-get :: State s s
-get = State $ \s -> (s , s)
-  -- get = gets id
-
-gets :: (s -> a) -> State s a
-gets f = State $ \s -> (f s, s)
-
-put :: s -> State s ()
-put s = State $ \_ -> ((), s)
-  -- put s = modify (\_ -> s)
-  -- put s = modify (const s)
-
-modify :: (s -> s) -> State s ()
-modify f = State $ \s -> ((), f s)
+import Control.Monad.State
 
 -- ================================================================================
 -- Tic Tac Toe Game
@@ -121,12 +84,13 @@ checkWinner = do
   
   where
     -- checks each winning combination with the grid. The foldr
-    -- produces [Bool, Bool, Bool] where [True, True, True]
-    -- is a win for a Slot.
+    -- produces [Slot, Slot, Slot] where [Cross, Cross, Cross] or
+    -- [Naught, Naught, Naught] is a win for that Slot.
     checkWin slots currentSlot =
       let getBools =
-            map (\xs -> let r = foldr (\i acc -> slots !! i : acc) [] xs
-                        in r == replicate 3 currentSlot) winningCombos
+            map (\xs -> let rs = foldr (\i acc -> slots !! i : acc) [] xs
+                        in all (== currentSlot) rs
+                ) winningCombos
       in True `elem` getBools
     
     -- winning combinations represented as grid indices.
@@ -157,7 +121,7 @@ changeSlot = do
 -- State ~ (Grid, Slot) where Slot represents the current turn (Naught of Cross)
 --
 runTicTacToe :: [Int] -> State (Grid, Slot) Bool
-runTicTacToe [] = checkWinner >>= \isWinner -> pure isWinner
+runTicTacToe [] = checkWinner >>= pure
 runTicTacToe (move:moves) = do
   applyMove move
   isWinner <- checkWinner
