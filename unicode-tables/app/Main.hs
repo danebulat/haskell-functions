@@ -3,7 +3,7 @@ module Main where
 import Control.Monad (mapM_)
 import Data.Char     (toLower)
 import Data.Default
-import Data.List     (delete)
+import Data.List     (delete, isSuffixOf)
 import Numeric
 
 -- -------------------------------------------------------------------
@@ -24,16 +24,22 @@ instance Default CharacterSet where
 -- -------------------------------------------------------------------
 -- Functions
 
--- generates data for a particular character set
-mkCharacterSet :: String -> Maybe CharacterSet
-mkCharacterSet setName = case slugName setName of
-  "basic-latin" -> Just (def :: CharacterSet)
-  "katakana"    -> Just $ CharacterSet
-                     { start=12449, end=12543, name="Katakana", slug="katakana" }
-  "hiragana"    -> Just $ CharacterSet
-                     { start=12352, end=12447, name="Hiragana", slug="hiragana" }
-  _             -> Nothing
-  where slugName = fmap toLower . map (\x -> if x == ' ' then '-' else x)
+mkCharacterSet :: String -> String -> Maybe CharacterSet
+mkCharacterSet input content =
+  let line = findSet input (lines content)
+  in case line of
+    Nothing -> Nothing
+    Just x  -> let ws = words x
+                   s  = getBound (ws !! 0)
+                   e  = getBound (ws !! 1)
+                   n  = input
+                   sl = slugName input
+               in Just $ CharacterSet { start=s, end=e, name=n, slug=sl }
+  where findSet _ [] = Nothing
+        findSet s (x:xs)
+          | s `isSuffixOf` x = Just x
+          | otherwise  = findSet s xs
+        getBound = fst . head . readHex
 
 -- for map values v in (k v)
 getHexSequences :: CharacterSet -> [String]
@@ -79,15 +85,23 @@ rmSequence x = delete x
 outputChars :: [String] -> IO ()
 outputChars = mapM_ (putStr . read)
 
+slugName :: String -> String 
+slugName = fmap toLower . map (\x -> if x == ' ' then '-' else x)
+
 
 -- ------------------------------------------------------------------------------
 -- Main
 
 main :: IO ()
 main = do
+  -- read in character set data
+  content <- readFile "data/ranges.txt"
+
+  -- get input from user
   putStrLn "Enter character set:"
-  input <- getLine 
-  let mcs = mkCharacterSet input
+  input <- getLine
+
+  let mcs = mkCharacterSet input content
   case mcs of
     Nothing -> putStrLn $ "unable to load character set: " ++ input
     Just cs -> renderMap . getMap $ cs
