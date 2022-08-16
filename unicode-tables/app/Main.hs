@@ -1,10 +1,11 @@
 module Main where
 
-import Control.Monad (mapM_)
-import Data.Char     (toLower)
+import Control.Monad      (mapM_)
+import Data.Char          (toLower)
 import Data.Default
-import Data.List     (delete, isSuffixOf)
+import Data.List          (delete, isSuffixOf)
 import Numeric
+import System.Environment (getArgs)
 
 -- -------------------------------------------------------------------
 -- Data types
@@ -52,7 +53,7 @@ getHexStrings cs = map ((flip showHex) "") [s..e]
   where s = start cs
         e = end cs
 
--- a map represents (simple hex code, readable hex code)
+-- a map represents (simple hex code, `read`able hex code)
 getMap :: CharacterSet -> [(String, String)]
 getMap cs = zipWith combine strs escSeqs
   where
@@ -75,7 +76,6 @@ renderMap cs = do
                   ++ "\t"   ++ (init (tail (snd x)))
                   ++ "\t  " ++ (read $ snd x)
           go (n + 1) xs
-
         renderCols = putStrLn $ "\n  No.\tHex\t\t  Char\n"
 
 -- utilities
@@ -94,15 +94,11 @@ slugName = fmap toLower . map (\x -> if x == ' ' then '-' else x)
 
 main :: IO ()
 main = do
-  -- read in character set data
+  args <- getArgs
   content <- readFile "data/ranges.txt"
-
-  -- get input from user
-  putStrLn "Enter character set:"
-  input <- getLine
-
-  let mcs = mkCharacterSet input content
+ 
+  let mcs = mkCharacterSet (args !! 0) content
   case mcs of
-    Nothing -> putStrLn $ "unable to load character set: " ++ input
+    Nothing -> putStrLn $ "unable to load character set: " ++ (args !! 0)
     Just cs -> renderMap . getMap $ cs
 
