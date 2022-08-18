@@ -111,6 +111,12 @@ cradle:
     - path: "json/src"
       component: "json:lib"
 
+    - path: "monad-transformers/app/Main.hs"
+      component: "monad-transformers:exe:monad-transformers"
+
+    - path: "monad-transformers/src"
+      component: "monad-transformers:lib"
+
     - path: "monads/app/Main.hs"
       component: "monads:exe:monads"
 
@@ -149,3 +155,9 @@ cradle:
 
     - path: "reader/src"
       component: "reader:lib"
+
+    - path: "tic-tac-toe/app/Main.hs"
+      component: "tic-tac-toe:exe:tic-tac-toe"
+
+    - path: "unicode-tables/app/Main.hs"
+      component: "unicode-tables:exe:unicode-tables"

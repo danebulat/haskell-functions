@@ -37,6 +37,7 @@ packages:
 - hangman
 - haskell-functions
 - json
+- monad-transformers
 - monads
 - morse
 - reader
