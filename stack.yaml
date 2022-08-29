@@ -33,6 +33,7 @@ packages:
 - applicatives 
 - binary-tree
 - card-validation
+- concurrency
 - functors
 - hangman
 - haskell-functions

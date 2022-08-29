@@ -45,6 +45,12 @@ cradle:
     - path: "card-validation/src"
       component: "card-validation:test:card-validation-test"
 
+    - path: "concurrency/app/Main.hs"
+      component: "concurrency:exe:concurrency"
+
+    - path: "concurrency/app/TypesSafe.hs"
+      component: "concurrency:exe:concurrency"
+
     - path: "functors/app/Main.hs"
       component: "functors:exe:functors"
 
