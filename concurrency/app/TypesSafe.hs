@@ -31,6 +31,10 @@ forkFinally action fun =
     forkIO (do r <- try (restore action); fun r)
 
 -- | async with forkFinally
+--
+-- Spawn a new thread and run an action inside it.
+-- Returns the threadId and mVar that will store the result
+-- of the action.
 async :: IO a -> IO (Async a)
 async action = do
   m <- newEmptyMVar
@@ -49,7 +53,10 @@ wait a = do
     Left e -> throwIO e  -- propogate error
     Right a -> return a  -- operation successful, return a
 
--- | make it safe by wrapping it in mask_
+-- | Takes a thread's returned value
+--
+-- Puts the value back for other waiting threads.
+-- Make it safe by wrapping it in mask_.
 readMVar :: MVar a -> IO a
 readMVar m =
   mask_ $ do

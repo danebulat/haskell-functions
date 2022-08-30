@@ -27,6 +27,7 @@ executable concurrency
     other-extensions:
     build-depends:    base ^>=4.15.1.0
                     , aeson
+                    , async
                     , bytestring
                     , containers
                     , lens
